@@ -10,7 +10,7 @@ CD4543BETo7Seg dsp;
 
 unsigned long previousMillis = 0;
 const long interval = 1000;
-byte num = 0;
+int num = 0;
 
 void setup() {
     Serial.begin(9600);
@@ -18,7 +18,7 @@ void setup() {
     dsp.enablePin(digit1, digit2);
 }
 
-void loop() {
+void loop() {    
     unsigned long currentMillis = millis();
     if (currentMillis - previousMillis >= interval) {
         num++;
@@ -28,4 +28,11 @@ void loop() {
         }
         dsp.write(num);
     }
+    
+    /*
+    if (Serial.available()) {
+        num = Serial.parseInt(); //read int or parseFloat for ..float...
+        Serial.println(num,BIN);
+        dsp.write(num);
+    }*/
 }
